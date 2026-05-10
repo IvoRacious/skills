@@ -29,8 +29,6 @@ SUPPORTED_FILE_TYPES = (
     ".jp2",
     ".jpeg",
     ".jpg",
-    ".markdown",
-    ".md",
     ".odp",
     ".odt",
     ".pdf",

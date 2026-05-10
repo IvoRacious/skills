@@ -16,7 +16,7 @@ description: Upload local documents to TianGong AI Unstructure `/mineru_with_ima
 - Return only plain fulltext (prefer API `txt`; fallback to joined `result[].text`).
 
 ## Triggering Conditions
-- Need robust document fulltext extraction for PDF/Office/Markdown/image files.
+- Need robust document fulltext extraction for PDF/Office/image files.
 - Need image-aware MinerU parsing but only textual output for downstream chunking/search/summarization.
 - Need to standardize provider/model/token input via environment variables instead of ad-hoc command parameters.
 
@@ -63,7 +63,7 @@ python3 scripts/mineru_fulltext_extract.py \
 
 ## Supported File Types (Strict)
 - Supported file types:
-  - `.bmp, .doc, .docm, .docx, .dot, .dotx, .gif, .jp2, .jpeg, .jpg, .markdown, .md, .odp, .odt, .pdf, .png, .pot, .potx, .pps, .ppsx, .ppt, .pptm, .pptx, .tiff, .webp, .xls, .xlsm, .xlsx, .xlt, .xltx`
+  - `.bmp, .doc, .docm, .docx, .dot, .dotx, .gif, .jp2, .jpeg, .jpg, .odp, .odt, .pdf, .png, .pot, .potx, .pps, .ppsx, .ppt, .pptm, .pptx, .tiff, .webp, .xls, .xlsm, .xlsx, .xlt, .xltx`
 - Office formats:
   - `.doc, .docm, .docx, .dot, .dotx, .odp, .odt, .pot, .potx, .pps, .ppsx, .ppt, .pptm, .pptx, .xls, .xlsm, .xlsx, .xlt, .xltx`
 - Any other extension is rejected before sending API requests.
