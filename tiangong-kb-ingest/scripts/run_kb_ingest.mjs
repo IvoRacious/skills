@@ -37,7 +37,9 @@ const nested = args[1] ?? "";
 let normalizedArgs;
 
 if (subcommand === "upload") {
-  normalizedArgs = ["kb", "ingest", "upload", ...args.slice(1)];
+  normalizedArgs = ["kb", "ingest", "bulk", ...args.slice(1)];
+} else if (subcommand === "bulk") {
+  normalizedArgs = ["kb", "ingest", "bulk", ...args.slice(1)];
 } else if (subcommand === "status") {
   normalizedArgs = ["kb", "ingest", "status", ...args.slice(1)];
 } else if (subcommand === "collections" && nested === "list") {

@@ -23,12 +23,10 @@ TIANGONG_KB_API_BASE_URL=https://thuenv.tiangong.world:7300
 TIANGONG_KB_API_PATH_PREFIX=/api/v1/kb
 TIANGONG_KB_DEFAULT_COLLECTION_KEY=course/thu_humanities
 TIANGONG_KB_DEFAULT_COLLECTION_PATH=/course/thu_humanities
-TIANGONG_KB_MANIFEST_PATH=.tiangong-kb-ingest-manifest.jsonl
-TIANGONG_KB_UPLOAD_CONCURRENCY=3
+TIANGONG_KB_UPLOAD_CONCURRENCY=4
 TIANGONG_KB_UPLOAD_RETRIES=3
-TIANGONG_KB_POLL_INTERVAL=2
+TIANGONG_KB_BULK_POLL_INTERVAL=30
 TIANGONG_KB_TIMEOUT=300
-TIANGONG_KB_WAIT_TIMEOUT=300
 TIANGONG_AI_CLI_BIN=/absolute/path/to/tiangong-ai
 ```
 
@@ -42,7 +40,11 @@ TIANGONG_AI_CLI_BIN=/absolute/path/to/tiangong-ai
 and the skill is not running inside the workspace checkout that contains
 `tiangong-ai-cli`.
 
-For large uploads, the manifest is append-only JSONL. Rerunning the same command with the same manifest skips files whose latest checkpoint status is `succeeded`; use `--force` to upload them again. The current per-file checkpoint key includes `sha256` and file size.
+Bulk ingest stores local checkpoint state in SQLite under the CLI app-data job
+directory unless `--state` is provided. It has no client-side polling limit by
+default, so the CLI can keep topping up the sliding upload window. Set
+`TIANGONG_KB_BULK_MAX_POLLS` or pass `--max-polls <n>` only for bounded
+operator runs.
 
 ## Do Not Configure
 
